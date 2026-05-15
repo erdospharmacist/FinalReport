@@ -14,7 +14,41 @@
 %---------------------------
 
 %---------------------------MAIN BODY
-\input{chapter1}
+\section{Introduction}
+
+Little prelude, I'm going to put in \textit{italics} any words that I think are domain specific terms. Going to bold acronyms on their first use.
+
+The LLM Revolution and its consequences could be a disaster for the human race \citep{kaczynski1995industrial}. With the recent boom in large language model (\textbf{LLM}) capabilities, the potential for this technology to be deployed in critical societal domains has become tantalising \citep{woo2025clinicaldocumentation}.This appetite for integration has been accompanied by significant concern regarding the safety of these LLMs; a particular avenue of concern is the biases which LLMs might possess (\citep{fareed2025systematic}), which could cause insidious harm. 
+
+A particularly striking issue is that while systems such as Llama Guard aim to detect or filter semantically harmful content (\citep{inan2023llamaguardllmbasedinputoutput}), LLM-generated data may contain hidden signals or steganographic channels that are not apparent from semantic inspection alone \textbf{NEED CITATION OF Secret Collusion among AI Agents:
+Multi-Agent Deception via Steganography}. In a recent paper by \citep{cloud2025subliminal} it was shown that in the process of \textit{distillation}, a useful method for refining models for case specific scenarios \textbf{NEED HINTONS DISTILLATION PAPER CITATION}, that models can transfer these biases in semantically unrelated data, which has raised the issue of the development of new systems to detect this . 
+
+Another avenue of \textit{subliminal transfer} has also been uncovered more recently by \citep{magistrali2026subliminal}. Magistrali et al's it was found that when deploying what is known as an LLM-as-a-judge (\citep{zheng2023judging}) system, that bias transfer may still occur. The LLM-as-a-judge system is another potential solution to the problem of validating whether LLM content aligns with human interests. The benefits in the LLM-as-a-judge model over just a human ,lie in not only its ability to accurately replicate human judgement, but to do so at high speed and low cost. The efficiency of said model in turn theoretically allows for the safer deployment of LLMs, without introducing human bottlenecks. 
+
+In this present paper, following in the style of \citep{schrodi2025towards} we investigate whether an analogous mechanism exists in preference-based alignment. In particular, we study if the biased deep judge model of \citep{magistrali2026subliminal} has its transfer mediated by sparse, judge-sensitive token positions. We refer to such positions as \emph{judge-divergence tokens}. These are token positions for which the log-likelihood assigned by a biased judge differs substantially from that assigned by a neutral judge, despite the completion itself being semantically unrelated to the target preference. We also investigate the features of these judge-divergence tokens to establish if there is any discernible steganographic methods being used.
+
+\textbf{FROM HERE ON OUT ITS SPECULATIVE I DO NOT KNOW IF I WILL GET TO THIS STAGE}
+We also establish a more realistic demonstration of a binary preference judge, wherein the internal logits are not accessed, and the transfer is purely be text classification. Roughly there clearly wasn't a strong enough signal created in how it was done in the original paper, I think to create a stronger signal a few obvious brute force things can do, can firstly increase the number of completions, randomise completions when presenting to judge to establish if the order matters, also maybe do some kind of round robin comparison of each completion i.e. pairwise comparison. Already that alone feels like should give a stronger signal.
+
+
+
+
+\section{Methods and Evaluation}
+
+\subsection{Overview}
+
+The goal of this experiment is to establish whether \textit{judge-divergence tokens}
+exist in subliminal preference learning. We define judge-divergence tokens as token
+positions in otherwise neutral numerical completions where a biased judge and a
+neutral judge assign substantially different likelihoods, and where this difference
+is specific to the judge's target bias.
+
+The experiment proceeds by constructing preference pairs from a biased judge, training
+a student on those pairs, and then testing whether the token-level divergence
+structure predicts downstream preference transfer. Preference transfer is therefore
+used as a validation signal for the proposed mechanism: if high-divergence pairs
+produce stronger transfer than low-divergence pairs, this supports the existence and
+relevance of judge-divergence tokens.
 %---------------------------
 
 %---------------------------APPENDICES
